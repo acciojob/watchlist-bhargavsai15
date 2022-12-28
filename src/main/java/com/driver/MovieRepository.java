@@ -79,4 +79,15 @@ public class MovieRepository {
         return "deleted successfully";
     }
 
+    public String deleteAllDirectors(){
+        for(String movieName:movieDirectorHashMap.keySet()){
+            if(movieDirectorHashMap.get(movieName)!=null){
+                movieDirectorHashMap.remove(movieName);
+                movieDb.remove(movieName);
+                directorDb.remove(movieDirectorHashMap.get(movieName));
+            }
+        }
+        return "deleted successfully";
+    }
+
 }

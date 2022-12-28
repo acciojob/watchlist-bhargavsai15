@@ -50,4 +50,9 @@ public class MovieService {
         return message;
     }
 
+    String deleteAllDirectors(){
+        String message=movieRepository.deleteAllDirectors();
+        return message;
+    }
+
 }
