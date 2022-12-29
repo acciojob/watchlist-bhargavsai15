@@ -23,13 +23,14 @@ public class MovieRepository {
     public String addMovieToDb(Movie movie){
         String key=movie.getName();
         movieDb.put(key,movie);
-        return "Movie added successfully";
+        allMovies.add(movie.getName());
+        return "success";
     }
 
     public String addDirectorToDb(Director director){
         String key=director.getName();
         directorDb.put(key,director);
-        return "Director added successfully";
+        return "success";
     }
 
     public Movie getMovieByName(String name){
@@ -48,7 +49,7 @@ public class MovieRepository {
         }
         movieDirectorHashMap.get(directorName).add(movieName);
 
-        return "Movie and director are paired successfully";
+        return "success";
     }
 
     public List<String> getMoviesByDirectorNameFromDb(String directorName){
@@ -62,37 +63,35 @@ public class MovieRepository {
     }
 
     public List<String> getAllMovies(){
-
-        for(String name:movieDb.keySet()){
-            allMovies.add(name);
-        }
         return allMovies;
     }
 
     public String deleteDirectorByName(String name){
+        outer:
         for(String director:movieDirectorHashMap.keySet()){
             if(director.equals(name)){
                 for (String movie:movieDirectorHashMap.get(director)){
                     movieDb.remove(movie);
                     allMovies.remove(movie);
                 }
+                break outer;
             }
         }
         movieDirectorHashMap.remove(name);
         directorDb.remove(name);
-        return "deleted successfully";
+        return "success";
     }
 
     public String deleteAllDirectors(){
-        for(List<String> movie:movieDirectorHashMap.values()){
-            for(String name:movieDirectorHashMap.get(movie)){
+        for(List<String> movies:movieDirectorHashMap.values()){
+            for(String name:movies){
                 movieDb.remove(name);
                 allMovies.remove(name);
             }
         }
         movieDirectorHashMap.clear();
         directorDb.clear();
-        return "deleted successfully";
+        return "success";
     }
 
 }
