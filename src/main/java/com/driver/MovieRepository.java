@@ -70,8 +70,6 @@ public class MovieRepository {
     }
 
     public String deleteDirectorByName(String name){
-        movieDirectorHashMap.remove(name);
-        directorDb.remove(name);
         for(String director:movieDirectorHashMap.keySet()){
             if(director.equals(name)){
                 for (String movie:movieDirectorHashMap.get(director)){
@@ -80,6 +78,8 @@ public class MovieRepository {
                 }
             }
         }
+        movieDirectorHashMap.remove(name);
+        directorDb.remove(name);
         return "deleted successfully";
     }
 
