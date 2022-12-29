@@ -70,10 +70,8 @@ public class MovieRepository {
             String directorName=movieDirectorHashMap.get(movieName);
             if(directorName.equals(name)){
                  movieDirectorHashMap.remove(movieName);
-                 if(directorDb.containsKey(directorName)){
-                     directorDb.remove(directorName);
-                     movieDb.remove(movieName);
-                 }
+                 directorDb.remove(directorName);
+                 movieDb.remove(movieName);
             }
         }
         return "deleted successfully";
