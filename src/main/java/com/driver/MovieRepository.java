@@ -52,6 +52,20 @@ public class MovieRepository {
         return "success";
     }
 
+
+
+    public String getDirectorNameByMovieName(String movieName){
+        //fetching the director names
+        for(String director:movieDirectorHashMap.keySet()){
+            for(String movies:movieDirectorHashMap.get(director)){      //fetch all movies for that director
+                if(movies.equals(movieName)){     //if movieName match
+                    return director;
+                }
+            }
+        }
+        return null;    //movie not found
+    }
+
     public List<String> getMoviesByDirectorNameFromDb(String directorName){
 
         for(String director:movieDirectorHashMap.keySet()){
